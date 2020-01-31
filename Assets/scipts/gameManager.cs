@@ -7,34 +7,45 @@ using UnityEngine.UI;
 
 public class gameManager : MonoBehaviour
 {
-    public bool isGameActive;
-    
     public TextMeshProUGUI gameOverText;
     public Button restartButton; 
-    
-
-    private Timer Timer;
+    public GameObject titlescreen;
+    public TextMeshProUGUI WinText;
+    public bool IsGameActive;
     
     public void Start ()
     {
-        //vind de game objecten
-        Timer = GameObject.Find("Text").GetComponent<Timer>();
-        isGameActive = true;
+     
     }
     
     // Stop game, bring up game over text and restart button
     public void GameOver()
-    {
-        gameOverText.gameObject.SetActive(true);
+    {       
+        //stopt de game geeft de gameover text en de restart knop
         restartButton.gameObject.SetActive(true);
-        isGameActive = false;
-        Timer.Alive = false;
+        gameOverText.gameObject.SetActive(true);
+        IsGameActive = false;
+    }
+
+    public void Gamewin()
+    {
+        WinText.gameObject.SetActive(true);
     }
 
     // Restart game by reloading the scene
     public void RestartGame()
     {
+        //herlaad de scene
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
-            
+
+    public void StartGame(int difficulty)
+    {
+        //maakt de game active en zet de difficulty
+        IsGameActive = true;
+
+        //haald het titel scherm weg
+        titlescreen.gameObject.SetActive(false);
+        
+    }
 }

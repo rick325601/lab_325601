@@ -12,16 +12,19 @@ public class SpawnManager4 : MonoBehaviour
     private float startDelay = 0.5f;
     private float enemySpawnTime = 0.8f;
     
-    public bool Alive;
-    
     // Start is called before the first frame update
     void Start()
+    {
+        
+    }
+
+    public void Startgame4()
     {
         InvokeRepeating("SpawnEnemy", startDelay, enemySpawnTime);
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
         
     }

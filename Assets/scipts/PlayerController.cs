@@ -9,24 +9,30 @@ public class PlayerController : MonoBehaviour {
     private float xRange = 30.0f;
     private float zRange = 15.0f; 
 
-    private gameManager gameManager;
+    private Timer timer;
+    
+    private gameManager GameManager;
 
     void Start ()
     {
         //vind de game objecten
         rb = GetComponent<Rigidbody>();
-        gameManager = GameObject.Find("Game Manager").GetComponent<gameManager>();
+        GameManager = GameObject.Find("Game Manager").GetComponent<gameManager>();
+        timer = GameObject.Find("Text").GetComponent<Timer>();
     }
 
     void FixedUpdate ()
     {
-        //geeft de player inputs
-        float moveHorizontal = Input.GetAxis ("Horizontal");
-        float moveVertical = Input.GetAxis ("Vertical");
+        if (GameManager.IsGameActive)
+        {
+            //geeft de player inputs
+            float moveHorizontal = Input.GetAxis ("Horizontal");
+            float moveVertical = Input.GetAxis ("Vertical");
 
-        //geeft movement aan de player
-        Vector3 movement = new Vector3 (moveHorizontal, 0.0f, moveVertical);
-        rb.AddForce (movement * speed);
+            //geeft movement aan de player
+            Vector3 movement = new Vector3 (moveHorizontal, 0.0f, moveVertical);
+            rb.AddForce (movement * speed);
+        }
         
         //zorgt dat de player niet van de map af kan rollen
         if (transform.position.x > xRange)
@@ -54,7 +60,7 @@ public class PlayerController : MonoBehaviour {
         {
             //geeft een singaal aan game manager
             Debug.Log("oof");
-            gameManager.GameOver();
+            GameManager.GameOver();
         }
     }
 }
