@@ -6,12 +6,15 @@ public class PlayerController : MonoBehaviour {
 
     public float speed;
     private Rigidbody rb;
-    private float xRange = 15.0f;
-    private float zRange = 10.0f;
+    private float xRange = 30.0f;
+    private float zRange = 15.0f; 
+    private Timer Timer;
+    public bool IsGameActive;
 
     void Start ()
     {
         rb = GetComponent<Rigidbody>();
+        Timer = GameObject.Find("Text").GetComponent<Timer>();
     }
 
     void FixedUpdate ()
@@ -39,14 +42,14 @@ public class PlayerController : MonoBehaviour {
         {
             transform.position = new Vector3(transform.position.x, transform.position.y, -zRange );
         }
-
     }
-
-    public class Rotator : MonoBehaviour
+    
+    void OnCollisionEnter(Collision collision)
     {
-        void Update()
+        if (collision.gameObject.CompareTag("enemy"))
         {
-            transform.Rotate(new Vector3(15, 30, 45) * Time.deltaTime);
-            }
+            Debug.Log("oof");
+            Timer.Alive = false;
+        }
     }
 }
