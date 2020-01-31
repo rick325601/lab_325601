@@ -28,6 +28,7 @@ public class SpawnManager : MonoBehaviour
 
     void SpawnEnemy()
     {
+        //als de player leeft is dit actief
         if (Alive)
         {
             float randomX = Random.Range(-xEnemySpawn, xEnemySpawn);

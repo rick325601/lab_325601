@@ -28,14 +28,11 @@ public class SpawnManager3 : MonoBehaviour
 
     void SpawnEnemy()
     {
-        if (Alive)
-        {
-            float randomz = Random.Range(-zEnemySpawn, zEnemySpawn);
-            int randomIndex = Random.Range(0, enemies.Length);
+        float randomz = Random.Range(-zEnemySpawn, zEnemySpawn);
+        int randomIndex = Random.Range(0, enemies.Length);
         
-            Vector3 spawnPos = new Vector3(xEnemySpawn, 0.75f, randomz);
-
-            Instantiate(enemies[randomIndex], spawnPos, enemies[randomIndex].gameObject.transform.rotation);
-        }
+        Vector3 spawnPos = new Vector3(xEnemySpawn, 0.75f, randomz); 
+        
+        Instantiate(enemies[randomIndex], spawnPos, enemies[randomIndex].gameObject.transform.rotation); 
     }
 }
